@@ -49,7 +49,7 @@ public class StarshipActivity extends AppCompatActivity {
             }
         }
 
-        Starship starship = null;
+        Starship starship;
         starship = fleet.findStarship(registry, fleet.getStarships());
         Log.d("STARSHIP FOUND", starship.toString());
 
