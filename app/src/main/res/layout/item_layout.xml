@@ -11,11 +11,12 @@
         android:id="@+id/image"
         android:src="@drawable/ic_launcher_background"
         android:layout_width="0dp"
-        android:layout_height="64dp" />
+        android:layout_height="128dp" />
     <TextView
+        android:paddingStart="8dp"
         android:layout_weight="2"
         android:id="@+id/crewMember"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:layout_width="0dp"
         android:layout_height="wrap_content" />
 </LinearLayout>

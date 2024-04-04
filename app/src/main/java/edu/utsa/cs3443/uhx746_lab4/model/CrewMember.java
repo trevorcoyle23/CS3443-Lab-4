@@ -35,7 +35,7 @@ public class CrewMember {
                 return R.drawable.mccoy;
             case "Montgomery Scott":
                 return R.drawable.scott;
-            case "Jean-Lun Picard":
+            case "Jean-Luc Picard":
                 return R.drawable.picard;
             case "William T. Riker":
                 return R.drawable.riker;
