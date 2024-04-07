@@ -22,7 +22,7 @@ public class StarshipActivity extends AppCompatActivity {
      *  - Finds the `Intent` object passed by `MainActivity` (`registry`).
      *  - Creates/initializes a `Fleet` object.
      *  -
-     * @param savedInstanceState
+     * @param savedInstanceState - IDK what this is but we need it :)
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
