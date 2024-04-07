@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,7 +17,13 @@ import edu.utsa.cs3443.uhx746_lab4.model.Fleet;
 import edu.utsa.cs3443.uhx746_lab4.model.Starship;
 
 public class StarshipActivity extends AppCompatActivity {
-
+    /**
+     * onCreate(Bundle):
+     *  - Finds the `Intent` object passed by `MainActivity` (`registry`).
+     *  - Creates/initializes a `Fleet` object.
+     *  -
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,40 +35,41 @@ public class StarshipActivity extends AppCompatActivity {
 
         // Create the Fleet
         Fleet fleet = new Fleet("United Federation of Planets");
-        Log.d("FLEET CREATED", fleet.toString());
 
         // Load the Starships into the Fleet
         try {
             fleet.loadStarships(StarshipActivity.this);
-            Log.d("FLEET LOADED", fleet.getStarships().toString());
         } catch (IOException e) {
+            // File not found branch
             e.printStackTrace();
         }
 
+        // For all `Starship` objects in `fleet`, load the `CrewMember` objects into the `Starship` object
         for (Starship s : fleet.getStarships()) {
             try {
                 s.loadCrewMembers(StarshipActivity.this);
-                Log.d("CREW MEMBER LOADED", "->" + s.getRegistry());
             } catch (IOException e) {
+                // File not found branch
                 e.printStackTrace();
             }
         }
 
         Starship starship;
         starship = fleet.findStarship(registry, fleet.getStarships());
-        Log.d("STARSHIP FOUND", starship.toString());
 
+        // TextViews
         TextView starshipNameText = findViewById(R.id.starshipName);
         TextView starshipRegistryText = findViewById(R.id.starshipRegistry);
-
         starshipNameText.setText(starship.getName());
         starshipRegistryText.setText(starship.getRegistry());
 
-        // display the CrewMembers in a Starship based on it's registry
+        // Display the CrewMembers in a Starship based on it's registry
         LinearLayout linearLayout = findViewById(R.id.linearLayout);
 
+        // Inflater for the LinearLayout of a `CrewMember` object
         LayoutInflater inflater = LayoutInflater.from(this);
 
+        // Add the `CrewMember` object to the ScrollView
         for (CrewMember crewMember : starship.getCrewMembers()) {
             View itemView = inflater.inflate(R.layout.item_layout, linearLayout, false);
 
